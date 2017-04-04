@@ -105,6 +105,8 @@ function runQuiz(quiz) {
     $('#question').find('ul li').each(function(index, element) {
             $(this).find('span').text(quiz.questions[quiz.currentQuestion].answers[index]);
     });
+    $('.correctNum').text(quiz.correct);
+    $('.incorrectNum').text(quiz.incorrect);
 }
 
 function resetQuiz(quiz) {
@@ -113,17 +115,17 @@ function resetQuiz(quiz) {
     quiz.incorrect = 0;
 }
 
-function checkAnswer(quiz) {
-
-}
-
-function calculateScore(userAnswer, quiz) {
-    if (userAnswer === quiz.questions[currentQuestion].answers[correctAnswer]) {
+function checkAnswer(userAnswer, quiz) {
+    if (userAnswer === quiz.questions[quiz.currentQuestion].answers[quiz.questions[quiz.currentQuestion].correctAnswer]) {
         return true;
     }
     else {
         return false;
     }
+}
+
+function calculateScore(answerResult, quiz) {
+
 }
 
 $(function() {
@@ -142,6 +144,6 @@ $(function() {
 
     $('#question').on('click', '.submitButton', function() {
         var userAnswer = $('input[name=option]:checked').siblings('span').text();
-        checkAnswer(userAnswer, quiz);
+        calculateScore(checkAnswer(userAnswer, quiz), quiz);
     });
 });
