@@ -1,5 +1,7 @@
 var quiz = {
     currentQuestion: 0,
+    correct: 0,
+    incorrect: 0,
     questions: [{
         question: "What is the name of Jon Snow's direwolf?",
         answers: [
@@ -94,21 +96,53 @@ var quiz = {
     userAnswer: []
 };
 
-function generateQuestion(quiz) {
+function constructQuestion(quiz) {
+    return '<span class="questionNumber">' + (quiz.currentQuestion + 1) + " of 10:" + "</span> " + quiz.questions[quiz.currentQuestion].question;
+}
 
+function runQuiz(quiz) {
+    $('.questionText').html(constructQuestion(quiz));
+    $('#question').find('ul li').each(function(index, element) {
+            $(this).find('span').text(quiz.questions[quiz.currentQuestion].answers[index]);
+    });
+}
+
+function resetQuiz(quiz) {
+    quiz.currentQuestion = 0;
+    quiz.correct = 0;
+    quiz.incorrect = 0;
+}
+
+function checkAnswer(quiz) {
+
+}
+
+function calculateScore(userAnswer, quiz) {
+    if (userAnswer === quiz.questions[currentQuestion].answers[correctAnswer]) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 $(function() {
 
     $('.startButton').click(function() {
-        $("#question").removeAttr('hidden');
+        $('#start').fadeOut('fast', function() {
+            $("#question").removeAttr('hidden');
+        });
+        runQuiz(quiz);
     });
 
-    if (typeof quiz.questions[0] != "undefined") {
-        $("#question")
-            .find("p").html('<span class="questionNumber">' + quiz.currentQuestion + 1 + " of 10:" + "</span> " + quiz.questions[0].question).end()
-            .find("ul li").each(function(index, element) {
-                $(this).find("span").text(quiz.questions[0].answers[index]);
-            });
-    }
+    $('#question').on('click', '.resetButton', function() {
+        resetQuiz(quiz);
+        runQuiz(quiz);
+    });
+
+    $('#question').on('click', '.submitButton', function() {
+        var userAnswer = $('input[name=option]:checked');
+        console.log(userAnswer);
+        checkAnswer(userAnswer, quiz);
+    });
 });
