@@ -92,8 +92,7 @@ var quiz = {
             "Cersei Lannister"
         ],
         correctAnswer: 3
-    }],
-    userAnswer: []
+    }]
 };
 
 function constructQuestion(quiz) {
@@ -101,12 +100,12 @@ function constructQuestion(quiz) {
 }
 
 function runQuiz(quiz) {
+    $('#success, #failure').attr('hidden', true);
     if (quiz.currentQuestion === 10) {
-        $('#question').fadeOut('fast', function() {
             $("#finish").removeAttr('hidden');
             $('.finalScore').text(quiz.correct + " / " + 10);
-        });
     } else {
+        $("#question").fadeIn('fast');
         $('.questionText').html(constructQuestion(quiz));
         $('#question').find('ul li').each(function(index, element) {
             $(this).find('span').text(quiz.questions[quiz.currentQuestion].answers[index]);
@@ -115,6 +114,18 @@ function runQuiz(quiz) {
     
     $('.correctNum').text(quiz.correct);
     $('.incorrectNum').text(quiz.incorrect);
+}
+
+function failSuccess(quiz, userAnswer) {
+    if (checkAnswer(userAnswer, quiz)) {
+        $('#question').fadeOut('fast', function() {
+            $("#success").removeAttr('hidden');
+        });
+    } else {
+        $('#question').fadeOut('fast', function() {
+            $("#failure").removeAttr('hidden');
+        });
+    }
 }
 
 function resetQuiz(quiz) {
@@ -157,6 +168,10 @@ $(function() {
     $('#question').on('click', '.submitButton', function() {
         var userAnswer = $('input[name=option]:checked').siblings('span').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
+        failSuccess(quiz, userAnswer);
+    });
+
+    $("#success, #failure").on('click', '.continue', function() {
         quiz.currentQuestion += 1;
         runQuiz(quiz);
     });
