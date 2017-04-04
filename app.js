@@ -101,7 +101,7 @@ function constructQuestion(quiz) {
 }
 
 function runQuiz(quiz) {
-    if (quiz.currentQuestion === 9) {
+    if (quiz.currentQuestion === 10) {
         $('#question').fadeOut('fast', function() {
             $("#finish").removeAttr('hidden');
             $('.finalScore').text(quiz.correct + " / " + 10);
