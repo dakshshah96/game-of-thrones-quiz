@@ -25,9 +25,9 @@ input:checked + .check i.ion-android-radio-button-off {display: none;}
 input:checked + .check i.ion-android-radio-button-on {display: inline-block;}
 
 .action-button {text-align: center;}
-.action-button .btn-next {font-size: 1.25em; text-decoration: none; line-height: 1; padding: 15px; display: inline-block; background-color: rgba(255,255,255,0.25); margin: 75px; border-radius: 5px;}
-.action-button .btn-next i {line-height: 1;}
-.action-button .btn-next:hover {background-color: #fff; color: #000;}
+.action-button .btn-next, .action-button .btn-reset {font-size: 1.25em; text-decoration: none; line-height: 1; padding: 15px; display: inline-block; background-color: rgba(255,255,255,0.25); margin: 75px; border-radius: 5px;}
+.action-button .btn-next i, .action-button .btn-reset i {line-height: 1;}
+.action-button .btn-next:hover, .action-button .btn-reset:hover {background-color: #fff; color: #000;}
 
 #stats {position: absolute; bottom: 0; left: 0; width: 90px; font-size: 1.75em;}
 #stats #right {background-color: #cfc; padding: 5px; border: 1px solid #9f9;}

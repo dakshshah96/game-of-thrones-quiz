@@ -96,34 +96,36 @@ var quiz = {
 };
 
 function constructQuestion(quiz) {
-    return '<span class="questionNumber">' + (quiz.currentQuestion + 1) + " of 10:" + "</span> " + quiz.questions[quiz.currentQuestion].question;
+    return quiz.questions[quiz.currentQuestion].question;
+    // return '<span class="questionNumber">' + (quiz.currentQuestion + 1) + " of 10:" + "</span> " + quiz.questions[quiz.currentQuestion].question;
 }
 
 function runQuiz(quiz) {
-    $('#success, #failure').attr('hidden', true);
+    $('.answer-success, .answer-failure').attr('hidden', true);
     if (quiz.currentQuestion === 10) {
             $("#finish").removeAttr('hidden');
             $('.finalScore').text(quiz.correct + " / " + 10);
     } else {
-        $("#question").fadeIn('fast');
-        $('.questionText').html(constructQuestion(quiz));
-        $('#question').find('ul li').each(function(index, element) {
-            $(this).find('span').text(quiz.questions[quiz.currentQuestion].answers[index]);
+        $("#questions").fadeIn('fast');
+        $('.questionText').text(constructQuestion(quiz));
+        $('.question-count').find('#current').text(quiz.currentQuestion + 1);
+        $('#questions').find('ul li').each(function(index, element) {
+            $(this).find('span.options').text(quiz.questions[quiz.currentQuestion].answers[index]);
         });
     }
     
-    $('.correctNum').text(quiz.correct);
-    $('.incorrectNum').text(quiz.incorrect);
+    // $('.correctNum').text(quiz.correct);
+    // $('.incorrectNum').text(quiz.incorrect);
 }
 
 function failSuccess(quiz, userAnswer) {
     if (checkAnswer(userAnswer, quiz)) {
-        $('#question').fadeOut('fast', function() {
-            $("#success").removeAttr('hidden');
+        $('#questions').fadeOut('fast', function() {
+            $('.answer-success').removeAttr('hidden');
         });
     } else {
-        $('#question').fadeOut('fast', function() {
-            $("#failure").removeAttr('hidden');
+        $('#questions').fadeOut('fast', function() {
+            $('.answer-failure').removeAttr('hidden');
         });
     }
 }
@@ -154,26 +156,27 @@ function calculateScore(answerResult, quiz) {
 
 $(function() {
 
-    $('.startButton').click(function() {
-        $('#start').fadeOut('fast', function() {
-            $("#question").removeAttr('hidden');
+    $('#btn-start').click(function() {
+        $('#intro').fadeOut('fast', function() {
+            $('#questions').removeAttr('hidden');
         });
-        runQuiz(quiz);
+        runQuiz(quiz); 
     });
 
-    $('#question').on('click', '.resetButton', function() {
+    $('#questions').on('click', '.btn-reset', function() {
         resetQuiz(quiz);
         runQuiz(quiz);
     });
 
-    $('#question').on('click', '.submitButton', function() {
-        var userAnswer = $('input[name=option]:checked').siblings('span').text();
+    $('#questions').on('click', '.btn-next', function() {
+        var userAnswer = $('input[name=option]:checked').siblings('.options').text();
+        console.log(userAnswer);
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
         failSuccess(quiz, userAnswer);
         $('input[name=option]:checked').prop("checked", false);
     });
 
-    $("#success, #failure").on('click', '.continue', function() {
+    $(".answer-success, .answer-failure").on('click', '.continue', function() {
         quiz.currentQuestion += 1;
         runQuiz(quiz);
     });
