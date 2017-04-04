@@ -101,10 +101,18 @@ function constructQuestion(quiz) {
 }
 
 function runQuiz(quiz) {
-    $('.questionText').html(constructQuestion(quiz));
-    $('#question').find('ul li').each(function(index, element) {
+    if (quiz.currentQuestion === 9) {
+        $('#question').fadeOut('fast', function() {
+            $("#finish").removeAttr('hidden');
+            $('.finalScore').text(quiz.correct + " / " + 10);
+        });
+    } else {
+        $('.questionText').html(constructQuestion(quiz));
+        $('#question').find('ul li').each(function(index, element) {
             $(this).find('span').text(quiz.questions[quiz.currentQuestion].answers[index]);
-    });
+        });
+    }
+    
     $('.correctNum').text(quiz.correct);
     $('.incorrectNum').text(quiz.incorrect);
 }
@@ -125,7 +133,11 @@ function checkAnswer(userAnswer, quiz) {
 }
 
 function calculateScore(answerResult, quiz) {
-
+    if (answerResult) {
+        quiz.correct += 1;
+    } else {
+        quiz.incorrect += 1;
+    }
 }
 
 $(function() {
@@ -145,5 +157,7 @@ $(function() {
     $('#question').on('click', '.submitButton', function() {
         var userAnswer = $('input[name=option]:checked').siblings('span').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
+        quiz.currentQuestion += 1;
+        runQuiz(quiz);
     });
 });
