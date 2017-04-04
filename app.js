@@ -141,8 +141,7 @@ $(function() {
     });
 
     $('#question').on('click', '.submitButton', function() {
-        var userAnswer = $('input[name=option]:checked');
-        console.log(userAnswer);
+        var userAnswer = $('input[name=option]:checked').siblings('span').text();
         checkAnswer(userAnswer, quiz);
     });
 });
