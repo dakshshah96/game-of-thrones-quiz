@@ -139,6 +139,7 @@ function checkAnswer(userAnswer, quiz) {
         return true;
     }
     else {
+        $(".desc-wrong-answer").html("The correct answer was <strong>" + quiz.questions[quiz.currentQuestion].answers[quiz.questions[quiz.currentQuestion].correctAnswer] + "</strong>.");
         return false;
     }
 }
@@ -169,6 +170,7 @@ $(function() {
         var userAnswer = $('input[name=option]:checked').siblings('span').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
         failSuccess(quiz, userAnswer);
+        $('input[name=option]:checked').prop("checked", false);
     });
 
     $("#success, #failure").on('click', '.continue', function() {

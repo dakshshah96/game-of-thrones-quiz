@@ -1,56 +1,39 @@
-* {
-  box-sizing: border-box;
-  list-style: none;
-  font-family: 'Open Sans';
-  font-size: inherit;
-}
+* {margin: 0; padding: 0; list-style: none; font-size: inherit; color: inherit; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'Open Sans'}
+body {font-size: 10pt; background-color: #000;}
 
-body {
-  font-size: 10pt;
-}
+.bgmask {background: url("../img/bg.png") no-repeat; -webkit-background-size: contain; background-size: contain; position: fixed; z-index: -1; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5;}
 
-.text-center {
-  text-align: center;
-}
+#intro {color: #fff; text-align: center; position: relative; z-index: 2;}
+#intro h1 {font-family: 'Montserrat'; font-size: 3.5em; font-weight: 300; margin: 35% 0 15px;}
+#intro p {font-size: 1.5em; line-height: 2.5; font-weight: 300;}
+#intro .btn {font-size: 1.25em; text-decoration: none; line-height: 1; padding: 15px; display: inline-block; background-color: rgba(255,255,255,0.25); margin: 75px; border-radius: 3px;}
+#intro .btn:hover {background-color: #fff; color: #000;}
 
-.main-heading {
-  text-align: center;
-  padding: 10px;
-  margin: 0;
-  background-color: #000;
-  font-weight: 300;
-  color: #fff;
-  font-size: 1.5em;
-}
+#questions {background-color: rgba(255,255,255,0.8); position: fixed; z-index: 2; top: 55px; right: 15px; bottom: 15px; left: 15px;}
+#questions header {position: fixed; top: 0; right: 0; left: 0; color: #fff; background-color: #000; text-align: center;}
+#questions header h1 {font-family: 'Montserrat'; font-size: 1.5em; font-weight: 300; padding: 10px;}
 
-.container {
-  margin: 25px auto;
-  width: 400px;
-}
+article {padding: 15px; font-size: 1.75em;}
+article p {font-family: 'Montserrat'; margin: 0 0 15px;}
+article ul li {margin: 5px; background-color: rgba(204, 255, 204, 0.35); border-radius: 3px; padding: 0 5px;}
+article ul li:hover {background-color: #cfc;}
+article ul li label {padding: 5px; cursor: pointer; display: block;}
 
-.startButton {
-  margin: 25px;
-  padding: 10px;
-  font-size: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  display: inline-block;
-}
+input {display: none;}
+input + .check i.ion-android-radio-button-on,
+input:checked + .check i.ion-android-radio-button-off {display: none;}
+input:checked + .check i.ion-android-radio-button-on {display: inline-block;}
 
-#start p {
-  margin: 75px 0;
-  font-size: 1.5em;
-  line-height: 1.2;
-}
+.action-button {text-align: center;}
+.action-button .btn-next {font-size: 1.25em; text-decoration: none; line-height: 1; padding: 15px; display: inline-block; background-color: rgba(255,255,255,0.25); margin: 75px; border-radius: 5px;}
+.action-button .btn-next i {line-height: 1;}
+.action-button .btn-next:hover {background-color: #fff; color: #000;}
 
-#start button {
-  cursor: pointer;
-  -webkit-transition: color 0.5s linear, background-color 0.5s linear;
-  -o-transition: color 0.5s linear, background-color 0.5s linear;
-  transition: color 0.5s linear, background-color 0.5s linear;
-}
+#stats {position: absolute; bottom: 0; left: 0; width: 90px; font-size: 1.75em;}
+#stats #right {background-color: #cfc; padding: 5px; border: 1px solid #9f9;}
+#stats #wrong {background-color: #fcc; padding: 5px; border: 1px solid #f99;}
+#stats i {font-size: 1.25em; vertical-align: middle; text-shadow: 0 0 2px rgba(0,0,0,0.75); width: 25px; line-height: 1; display: inline-block; text-align: center;}
+#stats span {display: inline-block; width: 30px; text-align: right; font-family: 'Consolas', 'Monaco';}
 
-#start button:hover {
-  color: white;
-  background: #000;
-}
+#question-count {height: 90px; position: absolute; bottom: 0; right: 0; left: 90px; text-align: center; font-size: 1.5em; font-family: 'Montserrat'; padding: 10px; line-height: 1.5; background-color: rgba(255,255,255,0.25);}
+#question-count p span {font-weight: 600;}

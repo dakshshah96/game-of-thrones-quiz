@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Game of Thrones Quiz</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
-</head>
-
-<body>
-  <header>
-    <h1 class="main-heading">Game of Thrones Quiz</h1>
-  </header>
-  <div class="container text-center" id="start">
-    <p>Click on the button to start.</p>
-    <button class="startButton">START</button>
-  </div>
-  <div class="container" id="question" hidden>
-    <p class="questionText"></p>
-    <ul class="questionOptions">
-      <li>
-        <label><input type="radio" name="option"><span></span></label></li>
-      <li>
-        <label><input type="radio" name="option"><span></span></label></li>
-      <li>
-        <label><input type="radio" name="option"><span></span></label></li>
-      <li>
-        <label><input type="radio" name="option"><span></span></label></li>
-    </ul>
-    <button type="submit" class="submitButton">Submit</button>
-    <button class="resetButton">Start Over</button>
-    <p class="stats">Correct: <span class="correctNum"></span></p>
-    <p class="stats">Incorrect: <span class="incorrectNum"></span></p>
-  </div>
-  <div class="container text-center" id="success" hidden>
-    <h2>Hooray! Your answer was correct.</h2>
-    <button class="continue">Continue</button>
-  </div>
-  <div class="container text-center" id="failure" hidden>
-    <h2>Oops! You got it wrong this time.</h2>
-    <button class="continue">Continue</button>
-  </div>
-  <div class="container text-center" id="finish" hidden>
-    <h2>Thanks for playing the Game of Thrones!</h2>
-    <p>Here's your final score: <span class="finalScore"></span></p>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="app.js"></script>
-</body>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Game of Thrones Quiz</title>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i|Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet" />
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="bgmask"></div>
+        <section id="intro">
+            <h1>Game of Thrones Quiz</h1>
+            <p>Let's test your intelligence on GoT!</p>
+            <a href="#" class="btn btn-primary" id="btn-start">Start!</a>
+        </section>
+        <section id="questions" hidden>
+            <header><h1>Game of Thrones Quiz</h1></header>
+            <article>
+                <p>What is your name?</p>
+                <ul>
+                    <li>
+                        <label>
+                            <input type="radio" name="option" />
+                            <span class="check">
+                                <i class="ion-android-radio-button-off"></i>
+                                <i class="ion-android-radio-button-on"></i>
+                            </span>
+                            <span>Option</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="option" />
+                            <span class="check">
+                                <i class="ion-android-radio-button-off"></i>
+                                <i class="ion-android-radio-button-on"></i>
+                            </span>
+                            <span>Option</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="option" />
+                            <span class="check">
+                                <i class="ion-android-radio-button-off"></i>
+                                <i class="ion-android-radio-button-on"></i>
+                            </span>
+                            <span>Option</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="option" />
+                            <span class="check">
+                                <i class="ion-android-radio-button-off"></i>
+                                <i class="ion-android-radio-button-on"></i>
+                            </span>
+                            <span>Option</span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="action-button">
+                    <a href="#" class="btn btn-next">Next <i class="ion-play"></i></a>
+                </div>
+            </article>
+            <div id="stats">
+                <div id="right"><i class="ion-android-cancel"></i> <span>0</span></div>
+                <div id="wrong"><i class="ion-android-checkbox"></i> <span>0</span></div>
+            </div>
+            <div id="question-count">
+                <p>You are in <span id="current">0</span> question of <span id="total">0</span> questions.</p>
+            </div>
+        </section>
+    </body>
 </html>
