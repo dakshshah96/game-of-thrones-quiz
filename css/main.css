@@ -1,0 +1,26 @@
+/* Main style */
+body {
+    font-family: 'Open Sans';
+    font-size: 16px;
+}
+
+/* Header styles */
+.header {
+    background: black;
+    color: white;
+    margin-bottom: 50px;
+}
+.header h1 {
+    font-size: 1.5em;
+}
+
+/* Intro styles */
+#intro p {
+    font-size: 1.2em;
+}
+#intro img {
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border: 5px solid black;
+}

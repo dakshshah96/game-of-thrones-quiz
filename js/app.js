@@ -111,7 +111,7 @@ function runQuiz(quiz) {
         $("#questions").fadeIn('fast');
         $('.questionText').text(constructQuestion(quiz));
         $('.question-count').find('#current').text(quiz.currentQuestion + 1);
-        $('#questions').find('ul li').each(function(index, element) {
+        $('#questions').find('.radio').each(function(index, element) {
             $(this).find('span.options').text(quiz.questions[quiz.currentQuestion].answers[index]);
         });
     }
