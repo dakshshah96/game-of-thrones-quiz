@@ -3,6 +3,8 @@ body {font-size: 10pt; background-color: #000;}
 
 .bgmask {background: url("bg.png") no-repeat; -webkit-background-size: contain; background-size: contain; position: fixed; z-index: -1; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5;}
 
+.wrapper {width: 350px; height: 700px; margin: auto;}
+
 #intro {color: #fff; text-align: center; position: relative; z-index: 2;}
 #intro h1 {font-family: 'Montserrat'; font-size: 3.5em; font-weight: 300; margin: 35% 0 15px;}
 #intro p {font-size: 1.5em; line-height: 2.5; font-weight: 300;}

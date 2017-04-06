@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
+    <div class="wrapper">
         <div class="bgmask"></div>
         <section id="intro">
             <h1>Game of Thrones Quiz</h1>
@@ -18,7 +19,7 @@
         </section>
         <section id="questions" hidden>
             <header><h1>Game of Thrones Quiz</h1></header>
-            <article>
+            <article id="question-main-content">
                 <p class="questionText">What is your name?</p>
                 <ul>
                     <li>
@@ -66,28 +67,29 @@
                     <a href="#" class="btn btn-next">Submit <i class="ion-play"></i></a>
                     <a href="#" class="btn btn-reset">Reset <i class="ion-ios-reload"></i></a>
                 </div>
-                <div class="answer-success" hidden>
-                    <h2>Hooray! Your answer was correct.</h2>
-                    <button class="continue">Continue</button>
-                </div>
-                <div class="answer-failure" hidden>
-                    <h2>Oops! You got it wrong this time.</h2>
-                    <p class="desc-wrong-answer"></p>
-                    <button class="continue">Continue</button>
-                </div>
             </article>
+            <div class="answer-success" hidden>
+                <h2>Hooray! Your answer was correct.</h2>
+                <button class="continue">Continue</button>
+            </div>
+            <div class="answer-failure" hidden>
+                <h2>Oops! You got it wrong this time.</h2>
+                <p class="desc-wrong-answer"></p>
+                <button class="continue">Continue</button>
+            </div>
             <div id="stats">
                 <div id="right"><i class="ion-android-cancel"></i> <span>0</span></div>
                 <div id="wrong"><i class="ion-android-checkbox"></i> <span>0</span></div>
             </div>
             <div id="question-count">
-                <p>You are on <span id="current">0</span> question of 10</span> questions.</p>
+                <p>You are on <span id="current">0</span> question of 10 questions.</p>
             </div>
         </section>
         <section id="finish" hidden>
             <h2>Thanks for playing the Game of Thrones!</h2>
             <p>Here's your final score: <span class="finalScore"></span></p>
         </section>  
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="app.js"></script>
     </body>
