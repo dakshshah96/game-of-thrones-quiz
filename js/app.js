@@ -7,6 +7,7 @@ This project was made by Daksh Shah and you can read more about him at https://d
 
 **/
 
+// Main quiz object
 var quiz = {
     currentQuestion: 0,
     correct: 0,
@@ -104,19 +105,27 @@ var quiz = {
     }]
 };
 
+// Return the question based on current question number
 function constructQuestion(quiz) {
     return quiz.questions[quiz.currentQuestion].question;
 }
 
+// The main function which runs the quiz
 function runQuiz(quiz) {
+
+    // Check if player had pressed play again on finish screen
     if (quiz.currentQuestion === 0) {
         $('#finish').fadeOut('fast');
     }
+    // Check if player is on last question of quiz (9th question)
     if (quiz.currentQuestion === 10) {
+            // Show finish screen
             $('#question-main-content').fadeOut('fast', function() {
                 $('#finish').removeAttr('hidden');
             });
+            // Display final score
             $('.finalScore').text(quiz.correct);
+            // Display praise text based on performance
             if (quiz.correct < 5) {
                 $('.praise-text').text('Bahaha! Have you ever seen GoT? Doesn\'t seem so.');
             } else if (quiz.correct < 8) {
@@ -125,21 +134,26 @@ function runQuiz(quiz) {
                 $('.praise-text').text('Wow! Shekh Ma Shieraki Anni. You\'re talented.');
             }
     } else {
+        // Update question number in heading
         $('#current').text(quiz.currentQuestion + 1);
+        // Show main question screen
         $('#question-main-content').fadeIn('fast');
-        $("#questions").fadeIn('fast');
+        // Embed question text
         $('.questionText').text(constructQuestion(quiz));
-        $('.question-count').find('#current').text(quiz.currentQuestion + 1);
+        // Fill in option choices
         $('#questions').find('.radio').each(function(index, element) {
             $(this).find('span.options').text(quiz.questions[quiz.currentQuestion].answers[index]);
         });
     }
+    // Show correct/incorrect answers in progress bar
     $('.bg-success').text(quiz.correct);
     $('.bg-danger').text(quiz.incorrect);
+    // Manipulate width of progress bar according to correct/incorrect
     $('.bg-success').css('width', quiz.correct * 10 + "%");
     $('.bg-danger').css('width', quiz.incorrect * 10 + "%");
 }
 
+// Handle switching screens on success/failure
 function failSuccess(quiz, userAnswer) {
     if (checkAnswer(userAnswer, quiz)) {
         $('#question-main-content').fadeOut('fast', function() {
@@ -152,12 +166,14 @@ function failSuccess(quiz, userAnswer) {
     }
 }
 
+// Handle quiz being reset by player
 function resetQuiz(quiz) {
     quiz.currentQuestion = 0;
     quiz.correct = 0;
     quiz.incorrect = 0;
 }
 
+// Return true/false based on user answer
 function checkAnswer(userAnswer, quiz) {
     if (userAnswer === quiz.questions[quiz.currentQuestion].answers[quiz.questions[quiz.currentQuestion].correctAnswer]) {
         return true;
@@ -168,6 +184,7 @@ function checkAnswer(userAnswer, quiz) {
     }
 }
 
+// Increment correct/incorrect based on user answer
 function calculateScore(answerResult, quiz) {
     if (answerResult) {
         quiz.correct += 1;
@@ -178,6 +195,7 @@ function calculateScore(answerResult, quiz) {
 
 $(function() {
 
+    // Handle radio options hover
     $('.radio label').hover(
         function() {
             if (!$(this).children('input[type="radio"]').is(':checked')) {
@@ -190,6 +208,7 @@ $(function() {
         }
     );
 
+    // Handle radio options clicks
     $('.radio label').click(function() {
         $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
         $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
@@ -198,6 +217,7 @@ $(function() {
         $(this).children('.options').css({'font-weight': 'bold', 'font-style': 'italic'});
     });
 
+    // Handle start quiz button click
     $('#btn-start').click(function() {
         $('#intro').fadeOut('fast', function() {
             $('#questions').removeAttr('hidden');
@@ -205,12 +225,14 @@ $(function() {
         runQuiz(quiz); 
     });
 
+    // Handle reset button click
     $('#questions').on('click', '.btn-reset', function() {
         resetQuiz(quiz);
         runQuiz(quiz);
         $('input[name=option]:checked').prop("checked", false);
     });
 
+    // Handle answer submit click
     $('#questions').on('click', '.btn-next', function() {
         var userAnswer = $('input[name=option]:checked').siblings('.options').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
@@ -218,12 +240,14 @@ $(function() {
         $('input[name=option]:checked').prop('checked', false);
     });
 
+    // Handle continue button click on answer/failure
     $(".answer-success, .answer-failure").on('click', '.continue', function() {
         $('.answer-success, .answer-failure').attr('hidden', true);
         quiz.currentQuestion += 1;
         runQuiz(quiz);
     });
 
+    // Handle play again button click
     $('#finish').on('click', '.btn-reset', function() {
         resetQuiz(quiz);
         runQuiz(quiz);
