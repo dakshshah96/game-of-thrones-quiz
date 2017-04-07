@@ -100,10 +100,21 @@ function constructQuestion(quiz) {
 }
 
 function runQuiz(quiz) {
+    if (quiz.currentQuestion === 0) {
+        $('#finish').fadeOut('fast');
+    }
     if (quiz.currentQuestion === 10) {
-            $("#questions, #question-count").attr('hidden', true);
-            $("#finish").removeAttr('hidden');
-            $('.finalScore').text(quiz.correct + " / " + 10);
+            $('#question-main-content').fadeOut('fast', function() {
+                $('#finish').removeAttr('hidden');
+            });
+            $('.finalScore').text(quiz.correct);
+            if (quiz.correct < 5) {
+                $('.praise-text').text('Bahaha! Have you ever seen GoT? Doesn\'t seem so.');
+            } else if (quiz.correct < 8) {
+                $('.praise-text').text('Hmm. Well done. You can do better though.');
+            } else {
+                $('.praise-text').text('Wow! Shekh Ma Shieraki Anni. You\'re talented.');
+            }
     } else {
         $('#current').text(quiz.currentQuestion + 1);
         $('#question-main-content').fadeIn('fast');
@@ -201,6 +212,11 @@ $(function() {
     $(".answer-success, .answer-failure").on('click', '.continue', function() {
         $('.answer-success, .answer-failure').attr('hidden', true);
         quiz.currentQuestion += 1;
+        runQuiz(quiz);
+    });
+
+    $('#finish').on('click', '.btn-reset', function() {
+        resetQuiz(quiz);
         runQuiz(quiz);
     });
 });

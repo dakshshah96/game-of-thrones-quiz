@@ -119,3 +119,15 @@ body {
     -webkit-transform: translate(0px, 5px);
     box-shadow: 0px 1px 0px 0px;
 }
+
+/* Finish screen */
+#finish h2 {
+    margin-bottom: 20px;
+}
+#finish img {
+    border: 2px solid gray;
+    margin-bottom: 20px;
+}
+#finish a {
+    color: white;
+}
