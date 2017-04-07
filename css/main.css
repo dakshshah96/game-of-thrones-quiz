@@ -159,3 +159,13 @@ body {
 #finish .btn-reset {
     margin-bottom: 20px;
 }
+
+/* MEDIA QUERIES */
+@media only screen and (max-width:405px) {
+    #questions {
+        width: 300px;
+    }
+    #action-buttons .btn-next {
+        margin-right: 10px;
+    }
+}
