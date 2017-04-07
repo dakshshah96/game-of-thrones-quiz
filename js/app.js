@@ -229,7 +229,10 @@ $(function() {
     $('#questions').on('click', '.btn-reset', function() {
         resetQuiz(quiz);
         runQuiz(quiz);
-        $('input[name=option]:checked').prop("checked", false);
+        // Reset and uncheck radio buttons on reset quiz
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
     });
 
     // Handle answer submit click
@@ -237,7 +240,10 @@ $(function() {
         var userAnswer = $('input[name=option]:checked').siblings('.options').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
         failSuccess(quiz, userAnswer);
-        $('input[name=option]:checked').prop('checked', false);
+        // Reset and uncheck radio buttons on submit
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
     });
 
     // Handle continue button click on answer/failure
