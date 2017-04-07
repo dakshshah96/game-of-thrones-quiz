@@ -100,9 +100,8 @@ function constructQuestion(quiz) {
 }
 
 function runQuiz(quiz) {
-    console.log(quiz.currentQuestion);
     if (quiz.currentQuestion === 10) {
-            $("#questions, #stats, #question-count").attr('hidden', true);
+            $("#questions, #question-count").attr('hidden', true);
             $("#finish").removeAttr('hidden');
             $('.finalScore').text(quiz.correct + " / " + 10);
     } else {
@@ -115,8 +114,10 @@ function runQuiz(quiz) {
             $(this).find('span.options').text(quiz.questions[quiz.currentQuestion].answers[index]);
         });
     }
-    $('#right').find('span').text(quiz.correct);
-    $('#wrong').find('span').text(quiz.incorrect);
+    $('.bg-success').text(quiz.correct);
+    $('.bg-danger').text(quiz.incorrect);
+    $('.bg-success').css('width', quiz.correct * 10 + "%");
+    $('.bg-danger').css('width', quiz.incorrect * 10 + "%");
 }
 
 function failSuccess(quiz, userAnswer) {
@@ -157,6 +158,26 @@ function calculateScore(answerResult, quiz) {
 
 $(function() {
 
+    $('.radio label').hover(
+        function() {
+            if (!$(this).children('input[type="radio"]').is(':checked')) {
+                $(this).css('background', '#6FC6FF');
+            }
+        }, function() {
+            if (!$(this).children('input[type="radio"]').is(':checked')) {
+                $(this).css('background', '#55acee');
+            }
+        }
+    );
+
+    $('.radio label').click(function() {
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        $(this).children('input[type="radio"]').prop('checked', true);
+        $(this).css({'background': '#55acee', 'box-shadow': '0px 1px 0px 0px #55acee', 'transform': 'translate(0px, 5px)', '-webkit-transform': 'translate(0px, 5px)'});
+        $(this).children('.options').css({'font-weight': 'bold', 'font-style': 'italic'});
+    });
+
     $('#btn-start').click(function() {
         $('#intro').fadeOut('fast', function() {
             $('#questions').removeAttr('hidden');
@@ -174,7 +195,7 @@ $(function() {
         var userAnswer = $('input[name=option]:checked').siblings('.options').text();
         calculateScore(checkAnswer(userAnswer, quiz), quiz);
         failSuccess(quiz, userAnswer);
-        $('input[name=option]:checked').prop("checked", false);
+        $('input[name=option]:checked').prop('checked', false);
     });
 
     $(".answer-success, .answer-failure").on('click', '.continue', function() {

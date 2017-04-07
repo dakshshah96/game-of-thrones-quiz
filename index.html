@@ -26,8 +26,8 @@
             <div class="row text-center">
                 <div class="col-lg-12">
                     <p>Let's test your intelligence on GoT!</p>
-                    <img class="img-responsive" src="img/hero-winter-is-coming.jpg">
-                    <a href="#" class="btn btn-primary btn-lg" id="btn-start">Start!</a>
+                    <img class="img-fluid" src="img/hero-winter-is-coming.jpg">
+                    <a href="#" class="btn btn-primary btn-lg btn-block" id="btn-start">Start!</a>
                 </div>
             </div>
         </section>
@@ -38,67 +38,64 @@
             <!-- Contain main question contents -->
             <article id="question-main-content">
 
+                <!-- Question count -->
+                <div class="row" id="question-count">
+                    <div class="col-lg-12">
+                        <p class="text-center"><strong><span id="current">0</span> of 10</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Question text -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="questionText">What is your name?</p>
+                        <p class="questionText">What's the name of Lysa Arryn's way-too-old-to-be-nursing son?</p>
                     </div>
                 </div>
 
                 <!-- Options list -->
-                <div class="row">
+                <div class="row" id="options-list">
                     <div class="col-lg-12">
                         <div class="radio">
                             <label>
                                 <input type="radio" name="option">
-                                <span class="options">Option</span>
+                                <span class="options">Cersei Lannister</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
                                 <input type="radio" name="option">
-                                <span class="options">Option</span>
+                                <span class="options">Margaery Tyrell</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
                                 <input type="radio" name="option">
-                                <span class="options">Option</span>
+                                <span class="options">Olenna Tyrell</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
                                 <input type="radio" name="option">
-                                <span class="options">Option</span>
+                                <span class="options">E Jarvis Thribb</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action buttons -->
-                <div class="row">
+                <div class="row" id="action-buttons">
                     <div class="col-lg-12">
-                        <div class="action-button">
-                            <a href="#" class="btn btn-next">Submit <i class="ion-play"></i></a>
-                            <a href="#" class="btn btn-reset">Reset <i class="ion-ios-reload"></i></a>
+                        <div class="action-button text-center">
+                            <a href="#" class="btn btn-green btn-next">Submit <i class="ion-play"></i></a>
+                            <a href="#" class="btn btn-red btn-reset">Reset <i class="ion-ios-reload"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stats -->
-                <div class="row" id="stats">
-                    <div class="col-lg-12">
-                        <div id="right"><i class="ion-android-cancel"></i> <span>0</span></div>
-                        <div id="wrong"><i class="ion-android-checkbox"></i> <span>0</span></div>
-                    </div>
-                </div>
-
-                <!-- Question count -->
-                <div class="row" id="question-count">
-                    <div class="col-lg-12">
-                        <p>You are on question <span id="current">0</span> of 10.</p>
-                    </div>
-                </div>  
             </article>
 
             <!-- Success message -->
@@ -129,6 +126,8 @@
             </div>
         </section>  
     </div>
+
+    <!-- Include scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
 </body>
