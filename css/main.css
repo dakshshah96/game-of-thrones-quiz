@@ -96,3 +96,26 @@ body {
 .btn-red:hover {
   background-color: #FF6656;
 }
+
+/* Success and failure screens */
+.answer-success img, .answer-failure img {
+    width: 25%;
+    margin-bottom: 30px;
+}
+.answer-success h2, .answer-failure h2 {
+    margin-bottom: 30px;
+}
+.continue {
+    color: white;
+    background-color: #55acee;
+    box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+.continue:hover {
+    background-color: #6FC6FF;
+    cursor: pointer;
+}
+.continue:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+}

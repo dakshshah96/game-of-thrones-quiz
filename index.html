@@ -100,18 +100,22 @@
 
             <!-- Success message -->
             <div class="row answer-success" hidden>
-                <div class="col-lg-12">
-                    <h2>Hooray! Your answer was correct.</h2>
-                    <button class="continue">Continue</button>
+                <div class="col-lg-12 text-center">
+                    <h2>Hooray!</h2>
+                    <img src="img/right-answer.svg" alt="Your answer was right">
+                    <p>You got that right mate!</p>
+                    <button class="btn continue">Continue</button>
                 </div>
             </div>
 
             <!-- Failure message -->
             <div class="row answer-failure" hidden>
-                <div class="col-lg-12">
-                    <h2>Oops! You got it wrong this time.</h2>
+                <div class="col-lg-12 text-center">
+                    <h2>Bam!</h2>
+                    <img src="img/wrong-answer.svg" alt="Your answer was wrong">
+                    <p>Made an error there, did you?</p>
                     <p class="desc-wrong-answer"></p>
-                    <button class="continue">Continue</button>
+                    <button class="btn continue">Continue</button>
                 </div>
             </div>
         </section>
