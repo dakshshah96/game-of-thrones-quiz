@@ -210,6 +210,7 @@ $(function() {
 
     // Handle radio options clicks
     $('.radio label').click(function() {
+        $('.action-button .btn-next').removeClass('disabled');
         $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
         $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
         $(this).children('input[type="radio"]').prop('checked', true);
@@ -233,6 +234,8 @@ $(function() {
         $('.radio label').children('input[type="radio"]').prop('checked', false);
         $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
         $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Disable submit button again
+        $('.action-button .btn-next').addClass('disabled');
     });
 
     // Handle answer submit click
@@ -244,6 +247,8 @@ $(function() {
         $('.radio label').children('input[type="radio"]').prop('checked', false);
         $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
         $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Disable submit button again
+        $('.action-button .btn-next').addClass('disabled');
     });
 
     // Handle continue button click on answer/failure
