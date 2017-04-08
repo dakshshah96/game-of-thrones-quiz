@@ -9,7 +9,10 @@ This project was made by Daksh Shah and you can read more about him at https://d
 
 // Main quiz object
 var quiz = {
-    currentQuestion: 0,
+    // Order of questions for current game
+    randomQuestions: [],
+    // Question number: 0, 1, 2, 3...
+    questionNumber: 0,
     correct: 0,
     incorrect: 0,
     questions: [{
@@ -187,18 +190,18 @@ var quiz = {
 
 // Return the question based on current question number
 function constructQuestion(quiz) {
-    return quiz.questions[quiz.currentQuestion].question;
+    return quiz.questions[quiz.randomQuestions[quiz.questionNumber]].question;
 }
 
 // The main function which runs the quiz
 function runQuiz(quiz) {
 
     // Check if player had pressed play again on finish screen
-    if (quiz.currentQuestion === 0) {
+    if (quiz.questionNumber === 0) {
         $('#finish').attr('hidden', true);
     }
     // Check if player is on last question of quiz (9th question)
-    if (quiz.currentQuestion === 10) {
+    if (quiz.questionNumber === 10) {
             // Show finish screen
             $('#question-main-content').fadeOut('fast', function() {
                 $('#finish').removeAttr('hidden');
@@ -215,14 +218,14 @@ function runQuiz(quiz) {
             }
     } else {
         // Update question number in heading
-        $('#current').text(quiz.currentQuestion + 1);
+        $('#current').text(quiz.questionNumber + 1);
         // Show main question screen
         $('#question-main-content').fadeIn('fast');
         // Embed question text
         $('.questionText').text(constructQuestion(quiz));
         // Fill in option choices
         $('#questions').find('.radio').each(function(index, element) {
-            $(this).find('span.options').text(quiz.questions[quiz.currentQuestion].answers[index]);
+            $(this).find('span.options').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[index]);
         });
     }
     // Show correct/incorrect answers in progress bar
@@ -236,15 +239,17 @@ function runQuiz(quiz) {
 // Handle switching screens on success/failure
 function failSuccess(quiz, userAnswer) {
     if (checkAnswer(userAnswer, quiz)) {
+        // success screen
         $('#question-main-content').fadeOut('fast', function() {
-            $('.answer-success h2').text(quiz.questions[quiz.currentQuestion].success[0]);
-            $('.answer-success p').text(quiz.questions[quiz.currentQuestion].success[1]);
+            $('.answer-success h2').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].success[0]);
+            $('.answer-success p').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].success[1]);
             $('.answer-success').removeAttr('hidden');
         });
     } else {
+        // failure screen
         $('#question-main-content').fadeOut('fast', function() {
-            $('.answer-failure h2').text(quiz.questions[quiz.currentQuestion].failure[0]);
-            $('.desc-fail-message').text(quiz.questions[quiz.currentQuestion].failure[1]);
+            $('.answer-failure h2').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].failure[0]);
+            $('.desc-fail-message').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].failure[1]);
             $('.answer-failure').removeAttr('hidden');
         });
     }
@@ -252,18 +257,22 @@ function failSuccess(quiz, userAnswer) {
 
 // Handle quiz being reset by player
 function resetQuiz(quiz) {
-    quiz.currentQuestion = 0;
+    // shuffle questions on reset !important
+    quiz.randomQuestions = shuffleQuestions();
+    quiz.questionNumber = 0;
     quiz.correct = 0;
     quiz.incorrect = 0;
 }
 
 // Return true/false based on user answer
 function checkAnswer(userAnswer, quiz) {
-    if (userAnswer === quiz.questions[quiz.currentQuestion].answers[quiz.questions[quiz.currentQuestion].correctAnswer]) {
+    // correct answer
+    if (userAnswer === quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer]) {
         return true;
     }
     else {
-        $(".desc-wrong-answer").html("The correct answer was <strong>" + quiz.questions[quiz.currentQuestion].answers[quiz.questions[quiz.currentQuestion].correctAnswer] + "</strong>.");
+        // wrong answer
+        $(".desc-wrong-answer").html("The correct answer was <strong>" + quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer] + "</strong>.");
         return false;
     }
 }
@@ -277,7 +286,23 @@ function calculateScore(answerResult, quiz) {
     }
 }
 
+// Generate unique random numbers from 0 to 10
+function shuffleQuestions() {
+    var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
+}
+
 $(function() {
+
+    // Randomize question order on first start
+    quiz.randomQuestions = shuffleQuestions();
 
     // Handle radio options hover
     $('.radio label').hover(
@@ -338,7 +363,8 @@ $(function() {
     // Handle continue button click on answer/failure
     $(".answer-success, .answer-failure").on('click', '.continue', function() {
         $('.answer-success, .answer-failure').attr('hidden', true);
-        quiz.currentQuestion += 1;
+        // increment question number on continue
+        quiz.questionNumber += 1;
         runQuiz(quiz);
     });
 
