@@ -28,7 +28,7 @@ These are few of the features which I believe contribute significantly to the UI
 * Right answer icon by [Pixel Buddha](http://www.flaticons.com/authors/pixel-buddha) from [Flaticon](http://www.flaticons.com)
 * Wrong answer icon by [Maxim Basinki](http://www.flaticon.com/authors/maxim-basinski) from [Flaticon](http://www.flaticons.com)
 * Background image [EP Natural Black](https://www.toptal.com/designers/subtlepatterns/ep-natural-black/) from [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns)
-* Icons by [Ionicons](http://ionicons.com/)
+* Custom icon font created using [Fontello](http://fontello.com)
 
 ## Author
 
