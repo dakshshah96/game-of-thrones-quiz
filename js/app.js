@@ -258,7 +258,7 @@ function failSuccess(quiz, userAnswer) {
 // Handle quiz being reset by player
 function resetQuiz(quiz) {
     // shuffle questions on reset !important
-    quiz.randomQuestions = shuffleQuestions();
+    quiz.randomQuestions = shuffleArr([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     quiz.questionNumber = 0;
     quiz.correct = 0;
     quiz.incorrect = 0;
@@ -287,8 +287,7 @@ function calculateScore(answerResult, quiz) {
 }
 
 // Generate unique random numbers from 0 to 10
-function shuffleQuestions() {
-    var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+function shuffleArr(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = array[i];
@@ -302,7 +301,7 @@ function shuffleQuestions() {
 $(function() {
 
     // Randomize question order on first start
-    quiz.randomQuestions = shuffleQuestions();
+    quiz.randomQuestions = shuffleArr([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     // Handle radio options hover
     $('.radio label').hover(
