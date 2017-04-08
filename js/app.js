@@ -20,7 +20,15 @@ var quiz = {
             "Graham",
             "Ricky"
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
+        success: [
+            "Alleluia!",
+            "What do we say to the lord of death? Not today."
+        ],
+        failure: [
+            "Ack!",
+            "The things we love destroy us every time, lad. Remember that."
+        ]
     }, {
         question: "What's the name of Lysa Arryn's way-too-old-to-be-nursing son?",
         answers: [
@@ -29,7 +37,15 @@ var quiz = {
             "Edmore",
             "Tyrion"
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
+        success: [
+            "Hip, Hip, Hooray!",
+            "A lion doesn't concern itself with the opinion of sheep."
+        ],
+        failure: [
+            "Boo!",
+            "When you play a game of thrones you win or you die."
+        ]
     }, {
         question: "What's the name of the explosive that gave the Lannisters the edge in the Battle of Blackwater?",
         answers: [
@@ -38,7 +54,15 @@ var quiz = {
             "Godsfire",
             "Pantsonfire"
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
+        success: [
+            "Boo-ya!",
+            "By what right does the wolf judge the lion?"
+        ],
+        failure: [
+            "Eeeks!",
+            "Nothing burns like the cold."
+        ]
     }, {
         question: "How is \"The Queen Of Thorns\" more commonly known?",
         answers: [
@@ -47,7 +71,15 @@ var quiz = {
             "Olenna Tyrell",
             "E Jarvis Thribb"
         ],
-        correctAnswer: 2
+        correctAnswer: 2,
+        success: [
+            "Ooh-la-la!",
+            "Valar Morghulis!"
+        ],
+        failure: [
+            "Neener-neener!",
+            "A bruise is a lesson... and each lesson makes us better."
+        ]
     }, {
         question: "What is Pycelle's official title in the Red Keep?",
         answers: [
@@ -56,7 +88,15 @@ var quiz = {
             "Lord Commander of the Kingsguard",
             "Grand Maester"
         ],
-        correctAnswer: 3
+        correctAnswer: 3,
+        success: [
+            "Sis boom bah!",
+            "Fire cannot kill a dragon."
+        ],
+        failure: [
+            "Tchah!",
+            "The man who fears losing has already lost."
+        ]
     }, {
         question: "Which Lannister song signalled doom at the Red Wedding?",
         answers: [
@@ -65,7 +105,15 @@ var quiz = {
             "The Assassin's Dagger",
             "Tales Of Topographic Oceans"
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
+        success: [
+            "Ride like the wind!",
+            "The only time a man can be brave is when he's afraid."
+        ],
+        failure: [
+            "Bam!",
+            "There is only one god, and his name is Death."
+        ]
     }, {
         question: "What piece of fencing advice did Jon Snow give to Arya Stark? \"Stick them with the…\"",
         answers: [
@@ -74,7 +122,15 @@ var quiz = {
             "\"…Futtocks End\"",
             "\"…Pointy end\""
         ],
-        correctAnswer: 3
+        correctAnswer: 3,
+        success: [
+            "Whoop-de-doo!",
+            "If we die, we die but first we'll live."
+        ],
+        failure: [
+            "Pfffft!",
+            "What we don't know is what usually gets us killed."
+        ]
     }, {
         question: "Who said, \"Some day I'm gonna put a sword through your eye and out the back of your skull\"?",
         answers: [
@@ -83,7 +139,15 @@ var quiz = {
             "Arya Stark",
             "The Mountain"
         ],
-        correctAnswer: 2
+        correctAnswer: 2,
+        success: [
+            "Ludicrous Speed!",
+            "Chaos isn't a pit. Chaos is a ladder."
+        ],
+        failure: [
+            "Uh-oh!",
+            "Nothing isn't better or worse than anything. Nothing is just nothing."
+        ]
     }, {
         question: "Who was burned alive on Drogo's funeral pyre?",
         answers: [
@@ -92,7 +156,15 @@ var quiz = {
             "Maris Piper",
             "Septa Mordane"
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
+        success: [
+            "Off the charts!",
+            "A dragon is not a slave."
+        ],
+        failure: [
+            "Yikes!",
+            "Any man who must say 'I am the king' is no true king."
+        ]
     }, {
         question: "Who said, \"If you ever call me sister again, I'll have you strangled in your sleep\"?",
         answers: [
@@ -101,7 +173,15 @@ var quiz = {
             "Catelyn Stark",
             "Cersei Lannister"
         ],
-        correctAnswer: 3
+        correctAnswer: 3,
+        success: [
+            "Yo-ho-ho!",
+            "A very small man can cast a very large shadow."
+        ],
+        failure: [
+            "Zoinks!",
+            "If you think this has a happy ending, you haven’t been paying attention."
+        ]
     }]
 };
 
@@ -131,7 +211,7 @@ function runQuiz(quiz) {
             } else if (quiz.correct < 8) {
                 $('.praise-text').text('Hmm. Well done. You can do better though.');
             } else {
-                $('.praise-text').text('Wow! Shekh Ma Shieraki Anni. You\'re talented.');
+                $('.praise-text').text('Wow! Shekh Ma Shieraki Anni. You\'re king of the world!');
             }
     } else {
         // Update question number in heading
@@ -157,10 +237,14 @@ function runQuiz(quiz) {
 function failSuccess(quiz, userAnswer) {
     if (checkAnswer(userAnswer, quiz)) {
         $('#question-main-content').fadeOut('fast', function() {
+            $('.answer-success h2').text(quiz.questions[quiz.currentQuestion].success[0]);
+            $('.answer-success p').text(quiz.questions[quiz.currentQuestion].success[1]);
             $('.answer-success').removeAttr('hidden');
         });
     } else {
         $('#question-main-content').fadeOut('fast', function() {
+            $('.answer-failure h2').text(quiz.questions[quiz.currentQuestion].failure[0]);
+            $('.desc-fail-message').text(quiz.questions[quiz.currentQuestion].failure[1]);
             $('.answer-failure').removeAttr('hidden');
         });
     }
