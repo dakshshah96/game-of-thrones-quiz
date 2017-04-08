@@ -44,7 +44,7 @@ var quiz = {
         ],
         failure: [
             "Boo!",
-            "When you play a game of thrones you win or you die."
+            "When you play the game of thrones, you win or you die."
         ]
     }, {
         question: "What's the name of the explosive that gave the Lannisters the edge in the Battle of Blackwater?",
