@@ -115,7 +115,7 @@ function runQuiz(quiz) {
 
     // Check if player had pressed play again on finish screen
     if (quiz.currentQuestion === 0) {
-        $('#finish').fadeOut('fast');
+        $('#finish').attr('hidden', true);
     }
     // Check if player is on last question of quiz (9th question)
     if (quiz.currentQuestion === 10) {
